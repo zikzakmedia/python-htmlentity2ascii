@@ -35,9 +35,11 @@ def convert(s):
     for hit in hits:
         name = hit[1:-1]
         if name in htmlentitydefs.name2codepoint:
-            s = s.replace(hit,
+            try:
+                s = s.replace(hit,
                           unichr(htmlentitydefs.name2codepoint[name]))
-
+            except:
+                s = ''
     s = s.replace(amp, "&")
 
     return s
